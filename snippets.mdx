@@ -1,0 +1,289 @@
+---
+title: Snippets
+description: How to reuse content with snippets.
+---
+
+import { Install } from "/snippets/install.mdx";
+
+{/* TODO: A directory of snippets */}
+
+## Introduction
+
+Snippets are reusable fragments of content that can be embedded in [pages](#). You can use snippets to ensure that documentation is consistent, up to date, and easy to maintain.
+
+## Supported content
+
+Any type of content that can exist within a page can exist within a snippet, including:
+
+- [Markdown](#)
+- [MDX](#)
+- [UI components](#)
+- Other snippets
+
+## Creating snippets
+
+1. Add a `snippets` directory to the root of the documentation project:
+
+   ```bash
+   mkdir snippets
+   ```
+
+2. In the `snippets` directory, create a file with a `.mdx` extension:
+
+   ```bash
+   touch snippets/greeting.mdx
+   ```
+
+3. Add some content to the snippet file:
+
+   ```mdx snippets/greeting.mdx
+   Hello, world!
+   ```
+
+## Using snippets
+
+1. Import the snippet into a page:
+
+   ```md
+   ---
+   title: Quickstart
+   subtitle: How to get started with the thing.
+   ---
+
+   import Greeting from "/snippets/greeting.mdx";
+   ```
+
+2. Use a self-closing JSX tag to embed the snippet:
+
+   ```mdx
+   <Greeting />
+   ```
+
+## Creating dynamic snippets
+
+You can define parameters for snippets. These parameters make the snippet dynamic by allowing content to be passed into them. This enables the reuse of content in situations where the content is similar but not exactly the same.
+
+To create a dynamic snippet:
+
+1. In the snippet file, use curly braces to define one or more [variables](#):
+
+   ```mdx
+   Hello, {name}! How are you?
+   ```
+
+2. When using the snippet, define the values of the variable(s) as props:
+
+   ```mdx
+   <Greeting name="John" />
+   <Greeting name="Paul" />
+   <Greeting name="George" />
+   <Greeting name="Ringo" />
+   ```
+
+## Snippet examples
+
+This section contains some examples of how you might like to use snippets. For more practical examples of how to use snippets, [browse our snippet recipes](#).
+
+### Deprecation warnings
+
+As a platform matures, there's often a need to deprecate features. This snippet provides a consistent way to inform users about deprecated features.
+
+<Tabs>
+
+<Tab title="Usage">
+
+```md
+import DeprecationWarning from "/snippets/deprecation-warning.mdx";
+
+<DeprecationWarning />
+```
+
+</Tab>
+
+<Tab title="Snippet">
+
+```mdx snippets/deprecation-warning.mdx
+<Warning>
+
+This API has been deprecated. To learn more, see [Deprecation policy](deprecation-policy).
+
+</Warning>
+```
+
+</Tab>
+
+<Tab title="Preview">
+
+<Warning>
+
+This API has been deprecated. To learn more, see [Deprecation policy](deprecation-policy).
+
+</Warning>
+
+</Tab>
+
+</Tabs>
+
+### Package installation commands
+
+This snippet renders a set of commands for installing a package with a range of package managers. This saves keystrokes while improving the user experience.
+
+<Tabs>
+
+<Tab title="Usage">
+
+```md
+import Install from "/snippets/install.mdx";
+
+<Install package="is-odd" />
+```
+
+</Tab>
+
+<Tab title="Snippet">
+
+````mdx snippets/install.mdx
+<Tabs>
+
+<Tab title="npm">
+
+```bash
+npm install {package}
+```
+
+</Tab>
+
+<Tab title="yarn">
+
+```bash
+yarn add {package}
+```
+
+</Tab>
+
+<Tab title="bun">
+
+```bash
+bun add {package}
+```
+
+</Tab>
+
+<Tab title="pnpm">
+
+```bash
+pnpm add {package}
+```
+
+</Tab>
+
+</Tabs>
+````
+
+</Tab>
+
+<Tab title="Preview">
+
+<Install pkg="is-odd" />
+
+</Tab>
+
+</Tabs>
+
+### Tutorial steps
+
+When documentation has a lot of step-by-step guides, certain steps may appear across multiple guides. For example, a step that involves setting up a development environment.
+
+<Tabs>
+
+<Tab title="Usage">
+
+```mdx hello-world.mdx
+import DevEnvironmentStep from "/snippets/dev-environment-step.mdx";
+
+<Steps>
+
+<DevEnvironmentStep />
+
+{/* Step 2 */}
+
+{/* Step 3 */}
+
+</Steps>
+```
+
+</Tab>
+
+<Tab title="Snippet">
+
+````mdx snippets/dev-environment-step.mdx
+<Step title="Set up a development environment">
+
+1. Clone the following repository:
+
+   ```bash
+   git clone https://github.com/example/repo.git
+   ```
+
+1. Navigate to the project directory:
+
+   ```bash
+   cd example-project
+   ```
+
+1. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+</Step>
+````
+
+</Tab>
+
+<Tab title="Preview">
+
+<Step title="Set up a development environment">
+
+1. Clone the following repository:
+
+   ```bash
+   git clone https://github.com/example/repo.git
+   ```
+
+1. Navigate to the project directory:
+
+   ```bash
+   cd example-project
+   ```
+
+1. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+</Step>
+
+</Tab>
+
+</Tabs>
+
+## Best practices
+
+- Don't create snippets before they're required.
+- Don't organize snippets before it's necessary.
+- Review snippets from time to time -- avoid staleness!
+- Be careful when updating snippets -- side-effects!
+- Be careful about reusing content that seems similar.
+
+## Gotchas
+
+- You can't create pages within the `snippets` directory.
+- You can't use variables in code blocks.
+
+## Troubleshooting
+
+- https://mdxjs.com/docs/troubleshooting-mdx/#problems-writing-mdx
+- Reserved keywords in variables.
