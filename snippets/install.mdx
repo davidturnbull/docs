@@ -1,0 +1,25 @@
+export const Install = ({ pkg }) => {
+
+const PACKAGE_MANAGERS = {
+npm: "npm install",
+yarn: "yarn add",
+bun: "bun add",
+pnpm: "pnpm add",
+};
+
+return (
+
+<Tabs>
+  {Object.entries(PACKAGE_MANAGERS).map(([key, value]) => (
+    <Tab title={key}>
+      <CodeBlock>
+        <pre className="language-bash">
+          <code className="language-bash">
+            {value} {pkg}
+          </code>
+        </pre>
+      </CodeBlock>
+    </Tab>
+  ))}
+</Tabs>
+); };
