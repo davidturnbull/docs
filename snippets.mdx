@@ -18,7 +18,6 @@ Any type of content that can exist within a page can exist within a snippet, inc
 - [Markdown](#)
 - [MDX](#)
 - [UI components](#)
-- Other snippets
 
 ## Creating snippets
 
@@ -61,7 +60,7 @@ Any type of content that can exist within a page can exist within a snippet, inc
 
 ## Creating dynamic snippets
 
-You can define parameters for snippets. These parameters make the snippet dynamic by allowing content to be passed into them. This enables the reuse of content in situations where the content is similar but not exactly the same.
+You can define parameters for snippets. These parameters make the snippet dynamic by allowing content to be passed into them where they're used — not just where they're defined. This enables the reuse of content that is similar but not exactly the same.
 
 To create a dynamic snippet:
 
@@ -71,7 +70,7 @@ To create a dynamic snippet:
    Hello, {name}! How are you?
    ```
 
-2. When using the snippet, define the values of the variable(s) as props:
+2. When using the snippet, define the values of the variable(s) as JSX props:
 
    ```mdx
    <Greeting name="John" />
@@ -80,7 +79,7 @@ To create a dynamic snippet:
    <Greeting name="Ringo" />
    ```
 
-## Snippet examples
+## Example snippets
 
 This section contains some examples of how you might like to use snippets. For more practical examples of how to use snippets, [browse our snippet recipes](#).
 
